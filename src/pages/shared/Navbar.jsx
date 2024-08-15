@@ -19,11 +19,11 @@ const Navbar = () => {
     },
     {
       navName: "About",
-      path: "/about",
+      path: "/#about",
     },
     {
       navName: "Contact",
-      path: "/contact",
+      path: "/#contact",
     },
   ];
 
@@ -40,6 +40,7 @@ const Navbar = () => {
       })
       .catch((error) => console.error(error));
   };
+
   return (
     <div>
       <header className="navbar py-4 md:px-14 bg-[#bbcba980] text-white font-extrabold z-20">
@@ -67,7 +68,7 @@ const Navbar = () => {
             >
               {navLinks.map((nav) => (
                 <li key={nav.navName} className="hover:text-[#768048]">
-                  <NavLink to={nav.path}>{nav.navName}</NavLink>
+                  <Link to={nav.path}>{nav.navName}</Link>
                 </li>
               ))}
             </ul>
@@ -80,7 +81,11 @@ const Navbar = () => {
           <ul className="menu menu-horizontal hidden lg:flex uppercase">
             {navLinks.map((nav) => (
               <li key={nav.navName} className="hover:text-[#768048]">
-                <NavLink to={nav.path}>{nav.navName}</NavLink>
+                {nav.path.startsWith("/#") ? (
+                  <a href={nav.path}>{nav.navName}</a>
+                ) : (
+                  <NavLink to={nav.path}>{nav.navName}</NavLink>
+                )}
               </li>
             ))}
           </ul>
