@@ -4,14 +4,16 @@ import ProductCard from "../../components/ProductCard";
 import Pagination from "../../components/Pagination";
 import SearchBar from "../../components/SearchBar";
 import Filters from "../../components/Filters";
+import Sorting from "../../components/Sorting";
 
 const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState({});
+  const [sortOptions, setSortOptions] = useState({ type: "", order: "" });
 
   // Update useProducts to handle page changes, searchQuery, filters...
-  const [products] = useProducts(currentPage, searchQuery, filters);
+  const [products] = useProducts(currentPage, searchQuery, filters, sortOptions);
   // console.log("Products ", products);
 
   // Assuming that the total pages are calculated and returned by the backend
@@ -31,6 +33,11 @@ const Products = () => {
     setCurrentPage(1); // Reset to the first page on filter change
   };
 
+  const handleSort = (type, order) => {
+    setSortOptions({ type, order });
+    setCurrentPage(1); // Reset to the first page on sort change
+  };
+
   return (
     <div className="my-10">
       <div className="text-center space-y-5 py-5">
@@ -38,7 +45,8 @@ const Products = () => {
         <p>Check our products</p>
       </div>
       <hr />
-      <div className="my-5 text-end">
+      <div className="flex justify-between items-center my-5">
+        <Sorting onSort={handleSort} />
         <SearchBar onSearch={handleSearch} />
       </div>
       <div className="grid grid-cols-4 gap-10 py-5">
