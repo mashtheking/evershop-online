@@ -23,7 +23,7 @@ const ProductCard = ({ product }) => {
         <p>Category: {category}</p>
         <p>Rating: {ratings}</p>
         <p>Description: {description}</p>
-        <p>CreateAt: {createdAt}</p>
+        <p>CreateAt: {new Date(createdAt).toLocaleDateString()}</p>
         <div className="card-actions justify-between items-center">
           <div className="">Price: ${price} </div>
           <div>
