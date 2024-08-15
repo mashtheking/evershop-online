@@ -68,7 +68,11 @@ const Navbar = () => {
             >
               {navLinks.map((nav) => (
                 <li key={nav.navName} className="hover:text-[#768048]">
-                  <Link to={nav.path}>{nav.navName}</Link>
+                  {nav.path.startsWith("/#") ? (
+                    <a href={nav.path}>{nav.navName}</a>
+                  ) : (
+                    <NavLink to={nav.path}>{nav.navName}</NavLink>
+                  )}
                 </li>
               ))}
             </ul>

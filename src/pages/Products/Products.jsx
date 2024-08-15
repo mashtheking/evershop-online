@@ -80,7 +80,7 @@ const Products = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="bg-[#bbcba9] text-base-content h-fit min-w-60 p-4 rounded-xl">
+          <ul className="bg-[#768048] text-base-content h-fit min-w-60 p-4 rounded-xl">
             <Filters
               onFilter={handleFilter}
               ourBrands={products.brands}
