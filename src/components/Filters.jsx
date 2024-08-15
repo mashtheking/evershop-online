@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Filters = ({ onFilter, ourBrands = [] }) => {
+const Filters = ({ onFilter, ourBrands = [], ourCategory = [] }) => {
   const [brand, setBrand] = useState("");
   const [category, setCategory] = useState("");
   const [priceRange, setPriceRange] = useState("");
@@ -32,9 +32,11 @@ const Filters = ({ onFilter, ourBrands = [] }) => {
         className="px-5 rounded-xl"
       >
         <option value="">All Categories</option>
-        <option value="Category 1">Category 1</option>
-        <option value="Category 2">Category 2</option>
-        <option value="Category 3">Category 3</option>
+        {ourCategory.map((category, index) => (
+          <option key={index} value={category}>
+            {category}
+          </option>
+        ))}
       </select>
 
       <h4 className="font-semibold">Filter by Price range:</h4>
