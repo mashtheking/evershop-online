@@ -6,7 +6,6 @@ import Contact from "../../components/Contact";
 
 const Home = () => {
   const [products] = useProducts();
-  console.log("Home products", products);
   return (
     <div>
       <div className="my-10">

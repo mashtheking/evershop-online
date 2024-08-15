@@ -6,6 +6,7 @@ import { FaEye } from "react-icons/fa";
 import { PiEyeClosedFill } from "react-icons/pi";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAuth from "../../hooks/useAuth";
+import SocialLogin from "../../components/SocialLogin";
 
 const Register = () => {
   const axiosPublic = useAxiosPublic();
@@ -135,7 +136,7 @@ const Register = () => {
                 </Link>
               </p>
               <p>Or Sign up with</p>
-              <button className="btn">Google</button>
+              <SocialLogin />
             </div>
           </div>
         </div>
