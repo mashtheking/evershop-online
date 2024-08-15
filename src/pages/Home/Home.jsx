@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import ProductCard from "../../components/ProductCard";
 import useProducts from "../../hooks/useProducts";
 import About from "../../components/About";
+import Contact from "../../components/Contact";
 
 const Home = () => {
   const [products] = useProducts();
@@ -30,6 +31,7 @@ const Home = () => {
       </div>
       <div>
         <About />
+        <Contact />
       </div>
     </div>
   );
