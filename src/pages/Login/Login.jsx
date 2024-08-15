@@ -8,8 +8,8 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAuth from "../../hooks/useAuth";
 
 const Register = () => {
-  const { createUser, userProfileUpdate } = useAuth();
   const axiosPublic = useAxiosPublic();
+  const { logInUser } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,43 +22,27 @@ const Register = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: "",
       email: "",
       password: "",
-      photo: "",
     },
   });
   const onSubmit = async (data) => {
-    const name = data.name;
     const email = data.email;
     const password = data.password;
-    const photo = data.photo;
     try {
-      const response = await createUser(email, password);
+      const response = await logInUser(email, password);
       const user = response.user;
-      await userProfileUpdate(name, photo);
-      const userInfo = {
-        name,
-        email,
-        photo,
-        date: new Date(),
-      };
+      Swal.fire({
+        title: "Success!",
+        text: `Welcome back ${
+          user?.displayName ? user.displayName : user.email
+        }`,
+        icon: "success",
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       navigate(from, { replace: true });
-      if (user) {
-        const { data } = await axiosPublic.post("/users", userInfo);
-        if (data.insertedId) {
-          Swal.fire({
-            position: "top-end",
-            title: "Success!",
-            text: `Welcome ${user.displayName ? user.displayName : user.email}`,
-            icon: "success",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          reset();
-          navigate(from, { replace: true });
-        }
-      }
     } catch (error) {
       console.error("Error", error);
       Swal.fire({
@@ -76,25 +60,8 @@ const Register = () => {
       <div className="hero bg-[#8d9968] my-20 rounded-xl shadow-2xl">
         <div className="hero-content">
           <div className="card bg-base-100">
-            <h2 className="text-5xl font-bold text-center my-5">
-              Register Now
-            </h2>
+            <h2 className="text-5xl font-bold text-center my-5">Login Now</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Name</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter your name"
-                  name="name"
-                  className="input input-bordered"
-                  {...register("name", { required: true })}
-                />
-                {errors.name && (
-                  <span className="text-red-600">Name is required</span>
-                )}
-              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -151,35 +118,20 @@ const Register = () => {
                   )}
                 </div>
               </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Photo</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter your photo url"
-                  name="photo"
-                  className="input input-bordered"
-                  {...register("photo", { required: false })}
-                />
-                {errors.photo && (
-                  <span className="text-red-600">Photo is required</span>
-                )}
-              </div>
 
               <div className="form-control mt-6">
                 <input
                   className="btn bg-[#D1A054B3] text-white"
                   type="submit"
-                  value="Sign Up"
+                  value="Login"
                 />
               </div>
             </form>
             <div className="text-center space-y-4 mb-8">
               <p className="text-[#D1A054]">
-                Already registered?{" "}
-                <Link to="/login" className="font-semibold">
-                  Login now
+                Need an account?{" "}
+                <Link to="/register" className="font-semibold">
+                  Register Now
                 </Link>
               </p>
               <p>Or Sign up with</p>
