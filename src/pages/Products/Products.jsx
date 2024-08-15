@@ -50,7 +50,7 @@ const Products = () => {
         <SearchBar onSearch={handleSearch} />
       </div>
       <div className="grid grid-cols-4 gap-10 py-5">
-        <div className="col-span-1 bg-[#bbcba9] p-5 rounded-xl ">
+        <div className="col-span-1 bg-[#bbcba9] p-5 rounded-xl h-fit">
           <Filters
             onFilter={handleFilter}
             ourBrands={products.brands}
