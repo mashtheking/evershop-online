@@ -13,7 +13,12 @@ const Products = () => {
   const [sortOptions, setSortOptions] = useState({ type: "", order: "" });
 
   // Update useProducts to handle page changes, searchQuery, filters...
-  const [products] = useProducts(currentPage, searchQuery, filters, sortOptions);
+  const [products] = useProducts(
+    currentPage,
+    searchQuery,
+    filters,
+    sortOptions
+  );
   // console.log("Products ", products);
 
   // Assuming that the total pages are calculated and returned by the backend
@@ -45,21 +50,21 @@ const Products = () => {
         <p>Check our products</p>
       </div>
       <hr />
-      <div className="flex justify-between items-center my-5">
+      <div className="flex flex-col-reverse sm:flex-row justify-between items-center my-5">
         <Sorting onSort={handleSort} />
         <SearchBar onSearch={handleSearch} />
       </div>
-      <div className="grid grid-cols-4 gap-10 py-5">
-        <div className="col-span-1 bg-[#bbcba9] p-5 rounded-xl h-fit">
-          <Filters
-            onFilter={handleFilter}
-            ourBrands={products.brands}
-            ourCategory={products.categories}
-            maxPriceRance={products.maxPrice}
-          />
-        </div>
-        <div className="col-span-3">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <div className="drawer lg:drawer-open">
+        <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content flex flex-col items-center justify-center gap-5">
+          <label
+            htmlFor="my-drawer"
+            className="btn bg-[#768048] text-white drawer-button lg:hidden"
+          >
+            Filters
+          </label>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 lg:ml-5">
             {products.total > 0 ? (
               products.products.map((product) => (
                 <ProductCard key={product._id} product={product} />
@@ -68,6 +73,21 @@ const Products = () => {
               <p>No products found.</p>
             )}
           </div>
+        </div>
+        <div className="drawer-side">
+          <label
+            htmlFor="my-drawer"
+            aria-label="close sidebar"
+            className="drawer-overlay"
+          ></label>
+          <ul className="bg-[#bbcba9] text-base-content h-fit min-w-60 p-4 rounded-xl">
+            <Filters
+              onFilter={handleFilter}
+              ourBrands={products.brands}
+              ourCategory={products.categories}
+              maxPriceRance={products.maxPrice}
+            />
+          </ul>
         </div>
       </div>
       <hr />
