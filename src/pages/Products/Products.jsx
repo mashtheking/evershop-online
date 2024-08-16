@@ -5,12 +5,16 @@ import Pagination from "../../components/Pagination";
 import SearchBar from "../../components/SearchBar";
 import Filters from "../../components/Filters";
 import Sorting from "../../components/Sorting";
+import { Helmet } from "react-helmet";
 
 const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState({});
-  const [sortOptions, setSortOptions] = useState({ type: "", order: "" });
+  const [sortOptions, setSortOptions] = useState({
+    type: "date",
+    order: "newest",
+  });
 
   // Update useProducts to handle page changes, searchQuery, filters...
   const [products] = useProducts(
@@ -45,6 +49,11 @@ const Products = () => {
 
   return (
     <div className="my-10">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Products - EverShop</title>
+        <meta name="description" content="Ever Shop online Products page" />
+      </Helmet>
       <div className="text-center space-y-5 py-5">
         <h2 className="text-5xl font-bold">All Product</h2>
         <p>Check our products</p>

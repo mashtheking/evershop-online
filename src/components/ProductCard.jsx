@@ -54,11 +54,11 @@ const ProductCard = ({ product }) => {
         <div className="card-actions flex justify-between items-center mt-4">
           <Link
             to={`/product/${_id}`}
-            className="btn btn-primary text-white bg-blue-500 hover:bg-blue-600 rounded-lg px-4 py-2"
+            className="btn bg-[#a4b288] text-white hover:bg-[#768048] rounded-lg px-4 py-2 border-none"
           >
             View Details
           </Link>
-          <button className="btn btn-secondary bg-gray-800 text-white hover:bg-gray-700 rounded-lg px-4 py-2">
+          <button className="btn btn-secondary bg-gray-800 text-white hover:bg-[#768048] rounded-lg px-4 py-2 border-none">
             Add to Cart
           </button>
         </div>

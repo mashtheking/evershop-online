@@ -7,6 +7,7 @@ import { PiEyeClosedFill } from "react-icons/pi";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAuth from "../../hooks/useAuth";
 import SocialLogin from "../../components/SocialLogin";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
   const { createUser, userProfileUpdate } = useAuth();
@@ -74,6 +75,14 @@ const Register = () => {
 
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Register - EverShop</title>
+        <meta
+          name="description"
+          content="Ever Shop online Register or Sign up page"
+        />
+      </Helmet>
       <div className="hero bg-[#8d9968] my-20 rounded-xl shadow-2xl">
         <div className="hero-content">
           <div className="card bg-base-100">

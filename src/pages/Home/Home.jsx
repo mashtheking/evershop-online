@@ -3,11 +3,17 @@ import ProductCard from "../../components/ProductCard";
 import useProducts from "../../hooks/useProducts";
 import About from "../../components/About";
 import Contact from "../../components/Contact";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   const [products] = useProducts();
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Home - EverShop</title>
+        <meta name="description" content="Ever Shop online home page" />
+      </Helmet>
       <div className="my-10">
         <div className="text-center space-y-5">
           <h1 className="text-5xl font-bold">Our Popular Products</h1>
