@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import ProductCard from "../../components/ProductCard";
-import useProducts from "../../hooks/useProducts";
 import About from "../../components/About";
 import Contact from "../../components/Contact";
 import { Helmet } from "react-helmet";
+import usePopularProducts from "../../hooks/usePopularProducts";
 
 const Home = () => {
-  const [products] = useProducts();
+  const [popularProducts] = usePopularProducts();
   return (
     <div>
       <Helmet>
@@ -20,8 +20,8 @@ const Home = () => {
           <p>View our most popular products here</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 py-10">
-          {products.total > 0 ? (
-            products.products.map((product) => (
+          {popularProducts.length > 0 ? (
+            popularProducts.map((product) => (
               <ProductCard key={product._id} product={product} />
             ))
           ) : (

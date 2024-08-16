@@ -3,7 +3,7 @@ import logo from "../../assets/es_logo.png";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { MdLogin } from "react-icons/md";
-import userPhoto from "../../../public/favicon.png";
+import userPhoto from "/favicon.png";
 
 const Navbar = () => {
   const { user, loading, logOut } = useAuth();
@@ -77,9 +77,9 @@ const Navbar = () => {
               ))}
             </ul>
           </div>
-          <a className="btn btn-ghost h-full w-40">
+          <Link to="/" className="btn btn-ghost h-full w-40">
             <img src={logo} alt="company logo" />
-          </a>
+          </Link>
         </div>
         <div className="navbar items-center justify-end gap-1 md:gap-2">
           <ul className="menu menu-horizontal hidden lg:flex uppercase">
