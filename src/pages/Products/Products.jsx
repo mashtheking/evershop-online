@@ -23,7 +23,7 @@ const Products = () => {
     filters,
     sortOptions
   );
-  console.log("Products ", products);
+  // console.log("Products ", products);
 
   // Assuming that the total pages are calculated and returned by the backend
   const totalPages = products.pages || 1;

@@ -4,7 +4,7 @@ import useAxiosPublic from "./useAxiosPublic";
 const useProducts = (currentPage, searchQuery, filters, sortOptions) => {
   const axiosPublic = useAxiosPublic();
   const token = localStorage.getItem("access-token");
-  console.log("secure", token);
+  // console.log("secure", token);
   const { data: products = [] } = useQuery({
     queryKey: ["products", currentPage, searchQuery, filters, sortOptions],
     queryFn: async () => {

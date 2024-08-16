@@ -6,6 +6,7 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import PrivateRoute from "./PrivateRoute";
+import ProductDetails from "../pages/Products/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Products />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/product/:id",
+        element: (
+          <PrivateRoute>
+            <ProductDetails />
           </PrivateRoute>
         ),
       },
